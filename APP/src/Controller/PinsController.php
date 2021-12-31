@@ -4,34 +4,85 @@ namespace App\Controller;
 
 use App\Entity\Pin;
 use App\Repository\PinRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PinsController extends AbstractController
 {
     /**
-     * @Route("/", name="app_page")
+     * @Route("/", name="app_page",methods="GET")
      */
     public function index(PinRepository $pinRepository): Response
     {
-        $pins = $pinRepository->findAll();
-      /*   dd($pins); */
+        $pins = $pinRepository->findBy([],["createdAt"=>"DESC"]);
+        /*   dd($pins); */
         return $this->render('pins/show_pins_front.html.twig', [
             'pins' => $pins,
         ]);
     }
 
-
     /**
-     * @Route("/pins/{id<[0-9]+>}", name="app_pin_show_datails")
+     * @Route("/pins/{id<[0-9]+>}", name="app_pin_show_datails",methods="GET")
      */
-
 
     public function ShowPinsDetails(Pin $pin): Response
     {
         return $this->render('pins/show_pin_details.html.twig', [
             'pin' => $pin,
+        ]);
+    }
+
+    /**
+     * @Route("/pinscreate", name="add_new_pin" ,methods="GET|POST")
+     */
+
+    public function ShowAddPage(Request $request, EntityManagerInterface $em): Response
+    {
+        $pin = new Pin;
+
+        $form = $this->createFormBuilder($pin)
+            ->add("title", TextType::class)
+            ->add("description", TextType::class)
+            ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+         
+            $em->persist($pin);
+            $em->flush();
+            return $this->redirectToRoute("app_page");
+        }
+        return $this->render('pins/add_new_pin.html.twig', [
+            "createForm" => $form->createView(),
+        ]);
+    }
+    /**
+     * @Route("/pins/{id<[0-9]+>}/edit", name="edit_pin" ,methods={"GET","POST"})
+     */
+    public function EditPin(Pin $pin ,Request $request,EntityManagerInterface $em): Response
+    {
+       
+
+        $form = $this->createFormBuilder($pin)
+            ->add("title", TextType::class)
+            ->add("description", TextType::class)
+            ->getForm();
+           
+            $form->handleRequest($request);
+           
+        if ($form->isSubmitted() && $form->isValid()) {
+         /*    dd($pin); */
+            $em->flush();
+            return $this->redirectToRoute("app_pin_show_datails",[ 'id' => $pin->getId()]);
+           
+        }
+
+        return $this->render('pins/edit_pin.html.twig', [
+            "pin"=>$pin,
+            "createForm" => $form->createView(),
         ]);
     }
 }

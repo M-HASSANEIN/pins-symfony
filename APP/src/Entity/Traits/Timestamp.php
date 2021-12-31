@@ -2,7 +2,7 @@
 
 namespace App\Entity\Traits;
 
-trait Timestamp 
+trait Timestamp
 {
     /**
      * @ORM\Column(type="datetime" ,options={"default":"CURRENT_TIMESTAMP"})
@@ -11,26 +11,29 @@ trait Timestamp
 
     /**
      * @ORM\Column(type="datetime" ,options={"default":"CURRENT_TIMESTAMP"}))
+     * 
+     * 
      */
     private $updatedAt;
-    public function getCreatedAt(): ?\DateTimeImmutable
+
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -41,12 +44,14 @@ trait Timestamp
      * @ORM\PrePersist
      * @ORM\PreUpdate
      */
+
     public function updateTimestamps()
     {
         if ($this->getCreatedAt() === null) {
             $this->setCreatedAt(new \DateTimeImmutable);
         }
+       
+
         $this->setUpdatedAt(new \DateTimeImmutable);
     }
-
 }

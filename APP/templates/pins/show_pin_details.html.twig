@@ -5,12 +5,13 @@
 
 {% endblock %}
 {% block body %}
-	<h1>
-		<a href="{{ path('app_page')}}">back</a>
-	</h1>
+	
 	<article>
 		<h2>{{pin.title}}</h2>
 		<p>{{pin.description}}</p>
 	</article>
+
+<a href="{{ path('app_page')}}">back</a>
+<a href="{{ path('edit_pin',{id:pin.id})}}">edit</a>
 
 {% endblock %}

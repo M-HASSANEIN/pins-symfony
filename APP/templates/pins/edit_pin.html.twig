@@ -1,0 +1,18 @@
+{% extends "layout_back.html.twig" %}
+
+{% block title  "Edit Pin"~ pin.id %}
+
+
+{% block body %}
+
+
+	<h1>Edit Pin no : {{pin.id}}</h1>
+	<div>
+		{{ form_start (createForm) }}
+		{{ form_widget (createForm) }}
+		<input type="submit" value="Edit-Pin">
+		{{ form_end (createForm) }}
+
+	</div>
+
+{% endblock %}
