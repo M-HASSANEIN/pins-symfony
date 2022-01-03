@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Pin;
+use App\Form\PinType;
 use App\Repository\PinRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,11 +45,10 @@ class PinsController extends AbstractController
     {
         $pin = new Pin;
 
-        $form = $this->createFormBuilder($pin)
-            ->add("title", TextType::class)
-            ->add("description", TextType::class)
-            ->getForm();
+        $form = $this->createForm(PinType::class,$pin);
+
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
          
             $em->persist($pin);
@@ -66,15 +66,12 @@ class PinsController extends AbstractController
     {
        
 
-        $form = $this->createFormBuilder($pin)
-            ->add("title", TextType::class)
-            ->add("description", TextType::class)
-            ->getForm();
+            $form = $this->createForm(PinType::class,$pin);
            
             $form->handleRequest($request);
            
         if ($form->isSubmitted() && $form->isValid()) {
-         /*    dd($pin); */
+        
             $em->flush();
             return $this->redirectToRoute("app_pin_show_datails",[ 'id' => $pin->getId()]);
            
