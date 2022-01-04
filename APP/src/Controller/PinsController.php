@@ -7,7 +7,6 @@ use App\Form\PinType;
 use App\Repository\PinRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,13 +43,11 @@ class PinsController extends AbstractController
     public function ShowAddPage(Request $request, EntityManagerInterface $em): Response
     {
         $pin = new Pin;
-
         $form = $this->createForm(PinType::class,$pin);
 
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-         
             $em->persist($pin);
             $em->flush();
             return $this->redirectToRoute("app_page");
@@ -60,26 +57,36 @@ class PinsController extends AbstractController
         ]);
     }
     /**
-     * @Route("/pins/{id<[0-9]+>}/edit", name="edit_pin" ,methods={"GET","POST"})
+     * @Route("/pins/{id<[0-9]+>}/edit", name="edit_pin" ,methods={"GET","PUT"})
      */
     public function EditPin(Pin $pin ,Request $request,EntityManagerInterface $em): Response
     {
-       
-
-            $form = $this->createForm(PinType::class,$pin);
-           
+            $form = $this->createForm(PinType::class ,$pin, [
+                'method' => 'PUT'
+            ]);
             $form->handleRequest($request);
            
         if ($form->isSubmitted() && $form->isValid()) {
-        
             $em->flush();
             return $this->redirectToRoute("app_pin_show_datails",[ 'id' => $pin->getId()]);
-           
         }
 
         return $this->render('pins/edit_pin.html.twig', [
             "pin"=>$pin,
             "createForm" => $form->createView(),
         ]);
+    }
+
+     /**
+     * @Route("/pins/{id<[0-9]+>}/delete", name="delete_pin" ,methods={"DELETE"})
+     */
+    public function DeletePin(Pin $pin ,Request $request,EntityManagerInterface $em): Response
+    {
+
+        
+         $em->remove($pin);
+         $em->flush();
+         return $this->redirectToRoute("app_page");
+
     }
 }

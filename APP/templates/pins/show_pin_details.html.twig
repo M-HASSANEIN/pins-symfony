@@ -5,13 +5,21 @@
 
 {% endblock %}
 {% block body %}
-	
+
 	<article>
 		<h2>{{pin.title}}</h2>
 		<p>{{pin.description}}</p>
 	</article>
 
-<a href="{{ path('app_page')}}">back</a> |
-<a href="{{ path('edit_pin',{id:pin.id})}}">edit</a>
+	<a href="{{ path('app_page')}}">back</a>
+	|
+	<a href="{{ path('edit_pin',{id:pin.id})}}">edit</a>
+	|
+	<a id="delete" href="#">delete</a>
 
+	<form id="form-delete" action="{{ path('delete_pin',{id:pin.id})}}" method="post" style="display:none">
+		<input type="hidden" name="_method" value="DELETE">
+	</form>
+
+	<script src="{{ asset("js/custom.js")}}"></script>
 {% endblock %}
