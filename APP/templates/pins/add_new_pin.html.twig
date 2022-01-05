@@ -7,12 +7,8 @@
 
 
 	<h1>Create Pin</h1>
-	<div>
-		{{ form_start (createForm) }}
-		{{ form_widget (createForm) }}
-		<input type="submit" value="Create-Pin">
-		{{ form_end (createForm) }}
 
-	</div>
+	{{ include("partials/_from-pindetails.html.twig",{ buttonText :"Create Pin"}) }}
+
 
 {% endblock %}
