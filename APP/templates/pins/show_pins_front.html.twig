@@ -4,7 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	<h1>
+
+	<h1 class="display-6">
 		{{  pluralize(pins|length,"Pin","Pins") }}
 	</h1>
 
@@ -22,6 +23,6 @@
 				{{pin.updatedAt|date("d/m/Y g:ia")}}</div>
 		</article>
 	{% endfor %}
-
+	{# {{ include('pins/pins_show_article.html.twig') }} #}
 	{# <div>{{ toto()}}</div> #}
 {% endblock %}

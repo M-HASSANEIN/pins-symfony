@@ -41,7 +41,7 @@ class Pin
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 10,
-     *      max = 50,
+     *      max = 200,
      *      minMessage = "Your description must be at least {{ limit }} characters long",
      *      maxMessage = "Your description cannot be longer than {{ limit }} characters"
      * )
@@ -59,7 +59,7 @@ class Pin
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -71,7 +71,7 @@ class Pin
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 

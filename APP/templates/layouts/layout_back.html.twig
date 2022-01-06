@@ -2,34 +2,39 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
+
 		<link
 		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
+			{# 'app' must match the first argument to addEntry() in webpack.config.js #}
 			{{ encore_entry_link_tags('app') }}
-		{% endblock %}
 
+		{% endblock %}
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
+
 	</head>
 	<body>
-	    {{ include('/partials/message/message.html.twig') }}
-		<nav>
-			<ul>
-				<li>
-					<a href="{{path("app_page")}}">Home</a>
-				</li>
-				<li>
-					<a href="{{path("add_new_pin")}}">add new pin</a>
-				</li>
-			</ul>
-		</nav>
-		
-		{% block body %}{% endblock %}
+		<header>
+			{{ include('/partials/nav-bars/nav_bar.html.twig') }}
+
+			{{ include('/partials/headers/header.html.twig') }}
+
+		</header>
+		<div class="container">
+			{{ include('/partials/message/message.html.twig') }}
+			{% block body %}{% endblock %}
+		</div>
+		<footer>
+			{{ include('/partials/footer/footer_back.html.twig') }}
+		</footer>
 	</body>
 </html>

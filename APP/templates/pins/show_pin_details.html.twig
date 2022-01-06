@@ -8,15 +8,13 @@
 
 	<article>
 		<h2>{{pin.title}}</h2>
-		<p>{{pin.description |u.truncate(50)}}</p>
+		<p>{{pin.description |u.truncate(200)}}</p>
 	</article>
-
-	<a href="{{ path('app_page')}}">back</a>
-	|
-	<a href="{{ path('edit_pin',{id:pin.id})}}">edit</a>
-	|
-	<a id="delete" href="#">delete</a>
-
+	<div class="d-grid gap-2 d-md-block">
+		<a href="{{ path('app_page')}}" class="btn btn-primary col-1">back</a>
+		<a href="{{ path('edit_pin',{id:pin.id})}}" class="btn btn-success col-1">edit</a>
+		<a id="delete" href="#" class="btn btn-danger col-1">delete</a>
+	</div>
 	<form id="form-delete" action="{{ path('delete_pin',{id:pin.id})}}" method="post" style="display:none">
 		<input type="hidden" name="_method" value="DELETE">
 		<input type="hidden" name="token" value="{{ csrf_token("pin_delete" ~ pin.id) }}">
