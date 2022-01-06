@@ -1,4 +1,4 @@
-{% extends 'layout_back.html.twig' %}
+{% extends "layouts/layout_back.html.twig" %}
 
 {% block title %}ALL PINS!
 {% endblock %}
@@ -21,8 +21,6 @@
 				last updated
 				{{pin.updatedAt|date("d/m/Y g:ia")}}</div>
 		</article>
-
-
 	{% endfor %}
 
 	{# <div>{{ toto()}}</div> #}

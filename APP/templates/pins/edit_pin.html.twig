@@ -1,13 +1,10 @@
-{% extends "layout_back.html.twig" %}
+{% extends "layouts/layout_back.html.twig" %}
 
 {% block title  "Edit Pin"~ pin.id %}
 
 
 {% block body %}
-
-
 	<h1>Edit Pin no :
 		{{pin.id}}</h1>
 	{{ include("partials/_from-pindetails.html.twig",{"buttonText":"Edite Pin"}) }}
-
 {% endblock %}

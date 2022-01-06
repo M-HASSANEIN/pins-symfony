@@ -18,12 +18,18 @@
 		{% endblock %}
 	</head>
 	<body>
+	    {{ include('/partials/message/message.html.twig') }}
 		<nav>
 			<ul>
-				<li><a href="{{path("app_page")}}">Home</a></li>
-				<li><a href="{{path("add_new_pin")}}">add new pin</a></li>
+				<li>
+					<a href="{{path("app_page")}}">Home</a>
+				</li>
+				<li>
+					<a href="{{path("add_new_pin")}}">add new pin</a>
+				</li>
 			</ul>
 		</nav>
+		
 		{% block body %}{% endblock %}
 	</body>
 </html>

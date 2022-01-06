@@ -50,6 +50,10 @@ class PinsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($pin);
             $em->flush();
+            $this->addFlash(
+                'success',
+                'Your pin has been created!'
+            );
             return $this->redirectToRoute("app_page");
         }
         return $this->render('pins/add_new_pin.html.twig', [
@@ -68,6 +72,10 @@ class PinsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
+            $this->addFlash(
+                'info',
+                'Your pin has been upated!'
+            );
             return $this->redirectToRoute("app_pin_show_datails", ['id' => $pin->getId()]);
         }
 
@@ -86,6 +94,10 @@ class PinsController extends AbstractController
         if ($this->isCsrfTokenValid("pin_delete" . $pin->getId(), $request->request->get("token"))) {
             $em->remove($pin);
             $em->flush();
+            $this->addFlash(
+                'warning',
+                'Your pin has been deleted!'
+            );
         }
         return $this->redirectToRoute("app_page");
     }
