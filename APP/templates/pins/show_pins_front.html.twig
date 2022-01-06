@@ -15,11 +15,15 @@
 			</h2>
 			<p>{{pin.description}}</p>
 
-			{# <div>{{pin.createdAt ?? date('Y-m-d H:i:s')}}</div> #}
+			<div>created from
+				{{pin.createdAt | ago}}</div>
+			<div>
+				last updated
+				{{pin.updatedAt|date("d/m/Y g:ia")}}</div>
 		</article>
 
 
 	{% endfor %}
-	
+
 	{# <div>{{ toto()}}</div> #}
 {% endblock %}

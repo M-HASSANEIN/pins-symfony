@@ -8,7 +8,7 @@
 
 	<article>
 		<h2>{{pin.title}}</h2>
-		<p>{{pin.description}}</p>
+		<p>{{pin.description |u.truncate(20)}}</p>
 	</article>
 
 	<a href="{{ path('app_page')}}">back</a>
