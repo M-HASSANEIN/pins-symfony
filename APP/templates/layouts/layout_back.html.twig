@@ -31,10 +31,16 @@
 		</header>
 		<div class="container">
 			{{ include('/partials/message/message.html.twig') }}
-			{% block body %}{% endblock %}
 		</div>
+		<main role="main" class="container">
+			<div>
+				{% block body %}{% endblock %}
+			</div>
+		</main>
+
+
 		<footer>
 			{{ include('/partials/footer/footer_back.html.twig') }}
 		</footer>
 	</body>
-</html>
+</html></body></html>
