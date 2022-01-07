@@ -9,20 +9,20 @@
 		{{  pluralize(pins|length,"Pin","Pins") }}
 	</h1>
 
-	{% for pin in pins %}
-		<article>
-			<h2>
-				<a href="{{ path("app_pin_show_datails",{id:pin.id})}}">{{pin.title}}</a>
-			</h2>
-			<p>{{pin.description}}</p>
-
-			<div>created from
-				{{pin.createdAt | ago}}</div>
-			<div>
-				last updated
-				{{pin.updatedAt|date("d/m/Y g:ia")}}</div>
-		</article>
-	{% endfor %}
-	{# {{ include('pins/pins_show_article.html.twig') }} #}
+	{# {% for pin in pins %}
+			<article>
+				<h2>
+					<a href="{{ path("app_pin_show_datails",{id:pin.id})}}">{{pin.title}}</a>
+				</h2>
+				<p>{{pin.description}}</p>
+	
+				<div>created from
+					{{pin.createdAt | ago}}</div>
+				<div>
+					last updated
+					{{pin.updatedAt|date("d/m/Y g:ia")}}</div>
+			</article>
+		{% endfor %} #}
+	{{ include('pins/pins_show_article.html.twig') }}
 	{# <div>{{ toto()}}</div> #}
 {% endblock %}
