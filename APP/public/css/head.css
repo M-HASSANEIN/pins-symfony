@@ -47,6 +47,7 @@ div.highlightTextIn a:before {
     overflow: hidden;
     content: attr(alt);
     transition: all 0.3s;
+    transition-timing-function: ease-in-out;
     transform: scale(0.8);
     opacity: 0;
 }
