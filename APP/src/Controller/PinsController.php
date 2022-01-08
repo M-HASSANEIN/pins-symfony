@@ -101,4 +101,6 @@ class PinsController extends AbstractController
         }
         return $this->redirectToRoute("app_page");
     }
+
+    
 }
