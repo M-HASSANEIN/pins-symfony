@@ -31,5 +31,5 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 ###> CUSTOMS-M-H ###
-/public/images/
+#/public/images/
 ###< CUSTOMS-M-H ###
