@@ -5,7 +5,7 @@ namespace AppBundle\EventListener;
 use Vich\UploaderBundle\Event\Event;
 use Vich\UploaderBundle\Handler\UploadHandler;
 
-class FooListener
+class RemoveFile
 {
 
     private $uploadHandler;

@@ -24,6 +24,6 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     my.listener:
-         class: AppBundle\EventListener\FooListener
+         class: AppBundle\EventListener\RemoveFile
          tags:
             - { name: kernel.event_listener, event: vich_uploader.pre_upload }
