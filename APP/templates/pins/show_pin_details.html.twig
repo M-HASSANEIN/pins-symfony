@@ -9,6 +9,7 @@
 	<article>
 		<h2>{{pin.title}}</h2>
 		<p>{{pin.description |u.truncate(200)}}</p>
+		{# <img class="card-img-top" src="{{ vich_uploader_asset(pin) }}" alt="{{ pin.title }}"> #}
 	</article>
 	<div class="d-grid gap-2 d-md-block">
 		<a href="{{ path('app_page')}}" class="btn btn-primary col-1">back</a>

@@ -1,13 +1,14 @@
 <div class="album py-5 ">
 	<div class="container">
 
-		<div class="row">
+		<div class="row form">
 
 			{% for pin in pins %}
 				<div class=" col-lg-4 col-md-12 col-sm-12">
-					<div
-						class="card mb-4 box-shadow">
-						{# <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap"> #}
+					<div class="card mb-4 box-shadow">
+
+						<img class="card-img-top" src="{{ vich_uploader_asset(pin) }}" alt="{{ pin.title }}">
+
 						<div class="card-body">
 							<h2>
 								<a href="{{ path("app_pin_show_datails",{id:pin.id})}}">{{pin.title}}</a>

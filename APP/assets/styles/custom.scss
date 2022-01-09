@@ -8,4 +8,12 @@ body {
     h2 {
         text-transform: uppercase;
     }
+    .vich-image {
+        img {
+            width: 100%;
+        }
+    }
+    .form {
+        margin: 50px auto;
+    }
 }
