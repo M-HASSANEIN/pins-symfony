@@ -11,11 +11,18 @@ body {
     .card-img-top {
         height: 300px;
     }
-    /*  .vich-image {
+    .vich-image {
         img {
-            width: 100%;
+            @extend .img-thumbnail;
+            @extend .rounded;
+            @extend .mx-auto;
+            @extend .d-block;
+            @extend .shadow-lg;
         }
-    } */
+        .form-check {
+            @extend .mt-3
+        }
+    }
     .form {
         margin: 100px auto;
     }
