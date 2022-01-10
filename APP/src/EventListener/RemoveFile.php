@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\EventListener;
+namespace App\EventListener;
 
 use Vich\UploaderBundle\Event\Event;
 use Vich\UploaderBundle\Handler\UploadHandler;
