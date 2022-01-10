@@ -8,11 +8,14 @@ body {
     h2 {
         text-transform: uppercase;
     }
-    .vich-image {
+    .card-img-top {
+        height: 300px;
+    }
+    /*  .vich-image {
         img {
             width: 100%;
         }
-    }
+    } */
     .form {
         margin: 100px auto;
     }

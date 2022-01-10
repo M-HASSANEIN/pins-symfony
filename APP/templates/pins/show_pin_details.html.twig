@@ -5,21 +5,32 @@
 
 {% endblock %}
 {% block body %}
-
-	<article>
-		<h2>{{pin.title}}</h2>
-		<p>{{pin.description |u.truncate(200)}}</p>
-		{# <img class="card-img-top" src="{{ vich_uploader_asset(pin) }}" alt="{{ pin.title }}"> #}
-	</article>
-	<div class="d-grid gap-2 d-md-block">
-		<a href="{{ path('app_page')}}" class="btn btn-primary col-1">back</a>
-		<a href="{{ path('edit_pin',{id:pin.id})}}" class="btn btn-success col-1">edit</a>
-		<a id="delete" href="#" class="btn btn-danger col-1">delete</a>
+	<div class="col-md-6 mx-auto">
+		<div class=" col-lg-12 col-md-12 col-sm-12">
+			<div class="card mb-4 box-shadow">
+				<img class="card-img-top" src="{{ vich_uploader_asset(pin) }}" alt="{{ pin.title }}">
+				<div class="card-body">
+					<h2>
+						<a href="{{ path("app_pin_show_datails",{id:pin.id})}}">{{pin.title}}</a>
+					</h2>
+					<p class="card-text">{{pin.description}}</p>
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="btn-group">
+							<div class="d-grid gap-2 d-md-block">
+								<a href="{{ path('app_page')}}" class="btn btn-primary">back</a>
+								<a href="{{ path('edit_pin',{id:pin.id})}}" class="btn btn-success ">edit</a>
+								<a id="delete" href="#" class="btn btn-danger ">delete</a>
+							</div>
+							<form id="form-delete" action="{{ path('delete_pin',{id:pin.id})}}" method="post" style="display:none">
+								<input type="hidden" name="_method" value="DELETE">
+								<input type="hidden" name="token" value="{{ csrf_token("pin_delete" ~ pin.id) }}">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<form id="form-delete" action="{{ path('delete_pin',{id:pin.id})}}" method="post" style="display:none">
-		<input type="hidden" name="_method" value="DELETE">
-		<input type="hidden" name="token" value="{{ csrf_token("pin_delete" ~ pin.id) }}">
-	</form>
 
 	<script src="{{ asset("js/custom.js")}}"></script>
 {% endblock %}

@@ -15,9 +15,14 @@ class PinType extends AbstractType
     {
         
         $IsEdit = $options["method"] === "PUT";
+        
+       /*  or 
+        $pin=$option ["data"];
+        $IsEditin = $pin && $pin->getId() */
+        
         $ImageFileconstraints = [];
         if ($IsEdit) {
-            $ImageFileconstraints[] = ['maxSize' => '1K'];
+            $ImageFileconstraints[] = ['maxSize' => '8Mi'];
 
           
             $builder
@@ -29,7 +34,8 @@ class PinType extends AbstractType
                     'download_uri' => false,
                     'constraints' => [
                         new Image($ImageFileconstraints[0])
-                    ]
+                    ],
+                    'imagine_pattern' => 'my_thumb_medium',
                     /*'image_uri' => true,*/
                     /*  'download_label' => 'Download', */
                     /*  'asset_helper' => true, */
@@ -44,7 +50,7 @@ class PinType extends AbstractType
                     'allow_delete' => true,
                     'delete_label' => 'Delete',
                     'download_uri' => false,
-
+                 
                     /*'image_uri' => true,*/
                     /*  'download_label' => 'Download', */
                     /*  'asset_helper' => true, */

@@ -33,3 +33,6 @@ yarn-error.log
 ###> CUSTOMS-M-H ###
 /public/images/
 ###< CUSTOMS-M-H ###
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
