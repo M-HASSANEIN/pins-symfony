@@ -4,25 +4,16 @@
 {% endblock %}
 
 {% block body %}
+	{% if pins|length > 0 %}
+		<h1 class="display-6 text-center">
+			{{  pluralize(pins|length,"Pin","Pins") }}
+		</h1>
+		{{ include('pins/pins_show_article.html.twig') }}
+		{# <div>{{ toto()}}</div> #}
+		{% else %}
 
-	<h1 class="display-6">
-		{{  pluralize(pins|length,"Pin","Pins") }}
-	</h1>
-
-	{# {% for pin in pins %}
-			<article>
-				<h2>
-					<a href="{{ path("app_pin_show_datails",{id:pin.id})}}">{{pin.title}}</a>
-				</h2>
-				<p>{{pin.description}}</p>
-	
-				<div>created from
-					{{pin.createdAt | ago}}</div>
-				<div>
-					last updated
-					{{pin.updatedAt|date("d/m/Y g:ia")}}</div>
-			</article>
-		{% endfor %} #}
-	{{ include('pins/pins_show_article.html.twig') }}
-	{# <div>{{ toto()}}</div> #}
+	{% endif %}
+	<p class="h1 mt-5 text-center">No pins added
+		<a href="{{path("add_new_pin")}}">Add first pin</a>
+	</p>
 {% endblock %}

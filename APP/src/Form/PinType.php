@@ -35,6 +35,7 @@ class PinType extends AbstractType
                     'constraints' => [
                         new Image($ImageFileconstraints[0])
                     ],
+                    
                     'imagine_pattern' => 'my_thumb_medium',
                     /*'image_uri' => true,*/
                     /*  'download_label' => 'Download', */
