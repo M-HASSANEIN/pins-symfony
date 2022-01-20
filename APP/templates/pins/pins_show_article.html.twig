@@ -7,8 +7,9 @@
 				<div class=" col-lg-4 col-md-12 col-sm-12">
 					<div class="card mb-4 box-shadow">
 
-						<img class="card-img-top" src="{{ vich_uploader_asset(pin) }}" alt="{{ pin.title }}">
-
+						<div class="mw-100 overflow-hidden">
+							<img class="card-img-top" src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset("default-img/default.jpg")) | imagine_filter('my_thumb_medium')}}" alt="{{ pin.title }}">
+						</div>
 						<div class="card-body">
 							<h2>
 								<a href="{{ path("app_pin_show_datails",{id:pin.id})}}">{{pin.title}}</a>
@@ -30,6 +31,7 @@
 					</div>
 				</div>
 			{% endfor %}
+
 		</div>
 	</div>
 </div>

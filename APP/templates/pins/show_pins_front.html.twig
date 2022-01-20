@@ -10,10 +10,10 @@
 		</h1>
 		{{ include('pins/pins_show_article.html.twig') }}
 		{# <div>{{ toto()}}</div> #}
-		{% else %}
-
+	{% else %}
+		<p class="h1 mt-5 text-center">No pins added
+			<a href="{{path("add_new_pin")}}">Add first pin</a>
+		</p>
 	{% endif %}
-	<p class="h1 mt-5 text-center">No pins added
-		<a href="{{path("add_new_pin")}}">Add first pin</a>
-	</p>
+
 {% endblock %}
