@@ -37,6 +37,6 @@ class AppExtentionExtension extends AbstractExtension
     }
      public function koko()
     {
-        return "tiko web site new goooood";
+        return "tiko web site new new  goooood";
     }
 }
