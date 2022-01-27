@@ -1,0 +1,12 @@
+{% extends "layouts/layout_back.html.twig" %}
+{% block title  "ADD-USERS" %}
+
+{% block body %}
+
+	<div class="row">
+		<div class="col-md-6 mx-auto">
+			<h1>ADD-NEW-USER! ✅</h1>
+			{{ include("partials/forms/_form-pindetails.html.twig",{ buttonText :"Add-User"}) }}
+		</div>
+	</div>
+{% endblock %}
