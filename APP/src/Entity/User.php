@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Entity\Traits\Timestamp;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -46,6 +48,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Pin::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $pins;
+
+    public function __construct()
+    {
+        $this->pin = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -159,4 +172,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Pin[]
+     */
+    public function getPin(): Collection
+    {
+        return $this->pin;
+    }
+
+    public function addPin(Pin $pin): self
+    {
+        if (!$this->pin->contains($pin)) {
+            $this->pin[] = $pin;
+            $pin->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePin(Pin $pin): self
+    {
+        if ($this->pin->removeElement($pin)) {
+            // set the owning side to null (unless already changed)
+            if ($pin->getUser() === $this) {
+                $pin->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
 }
