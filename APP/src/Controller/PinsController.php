@@ -48,6 +48,7 @@ class PinsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+        
             $em->persist($pin);
             $em->flush();
             $this->addFlash(

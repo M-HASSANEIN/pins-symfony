@@ -11,9 +11,15 @@
 		{{ include('pins/pins_show_article.html.twig') }}
 		{# <div>{{ toto()}}</div> #}
 	{% else %}
-		<p class="h1 mt-5 text-center">No pins added
-			<a href="{{path("add_new_pin")}}">Add first pin</a>
-		</p>
+		{% if app.user %}
+			<p class="h1 mt-5 text-center">No pins added
+				<a href="{{path("add_new_pin")}}">Add first pin</a>
+			</p>
+		{% else %}
+			<p class="h1 mt-5 text-center">You must be a member first to add pins
+				<a href="{{path('add_users')}}">subscribe now</a>
+			</p>
+		{% endif %}
 	{% endif %}
 
 {% endblock %}
