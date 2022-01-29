@@ -35,6 +35,7 @@ class AppExtentionExtension extends AbstractExtension
         $result = $count === 1 ? $singular : $plural;
         return  "$count  $result";
     }
+    //here to put the function you declare
      public function koko()
     {
         return "tiko web site new new  goooood";
