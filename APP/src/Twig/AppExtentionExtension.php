@@ -38,6 +38,6 @@ class AppExtentionExtension extends AbstractExtension
     //here to put the function you declare
      public function koko()
     {
-        return "tiko web site new new  goooood";
+        return "tiko web site new new  gooooooooood";
     }
 }
